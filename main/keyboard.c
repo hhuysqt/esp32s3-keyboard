@@ -157,11 +157,11 @@ void tud_resume_cb(void)
 
 void kb_led_cb(uint8_t kbd_leds)
 {
-  // if (kbd_leds & KEYBOARD_LED_NUMLOCK) {
-  //   LED_NUMLK_ON;
-  // } else {
-  //   LED_NUMLK_OFF;
-  // }
+  if (kbd_leds & KEYBOARD_LED_NUMLOCK) {
+    LED_NUMLK_ON;
+  } else {
+    LED_NUMLK_OFF;
+  }
 
   if (kbd_leds & KEYBOARD_LED_CAPSLOCK) {
     // Sometimes the GPIO may be reset on wake-up...
@@ -479,14 +479,14 @@ static void init_matrix_keyboard(void)
   GPIO_INIT_OUT_PULLDOWN(BACKLIGHT_PWM);
   GPIO_INIT_OUT_PULLUP(LED_CAPLK);
   GPIO_INIT_OUT_PULLDOWN(LED_F1);
-  // GPIO_INIT_OUT_PULLUP(LED_FNLK);     // MUX from TX0
-  // GPIO_INIT_OUT_PULLDOWN(LED_NUMLK);  // MUX from RX0
+  GPIO_INIT_OUT_PULLUP(LED_FNLK);     // MUX from TX0
+  GPIO_INIT_OUT_PULLDOWN(LED_NUMLK);  // MUX from RX0
 
   BACKLIGHT_OFF;
   LED_CAPLK_OFF;
   LED_F1_OFF;
-  // LED_FNLK_OFF;
-  // LED_NUMLK_OFF;
+  LED_FNLK_OFF;
+  LED_NUMLK_OFF;
 }
 
 /**

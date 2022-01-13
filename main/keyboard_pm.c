@@ -43,7 +43,7 @@
 
 // power management state configuration
 static kb_pm_state_t pm_cfg[] = {
-  // keyboard idle for a long time. 5mA without BLE, 1
+  // keyboard idle for a long time. 5mA without BLE, 10ma with BLE
   [PM_IDLE_LONG_TIME] = {
     .kb_int_us = 25000,   // *8 = 160ms per scan
     .ble_int_cnt = 800,   // *1.25 = 1000ms BLE connection interval
@@ -71,7 +71,7 @@ static kb_pm_state_t pm_cfg[] = {
     .duration_us = 120000000,
     .is_sleep = false
   },
-  // charging
+  // charging, ~500mA
   [PM_CHARGING] = {
     .kb_int_us = 2000,    // *8 = 16ms per scan
     .ble_int_cnt = 10,    // *1.25 = 12.5ms BLE connection interval
