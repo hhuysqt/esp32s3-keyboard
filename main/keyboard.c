@@ -56,11 +56,23 @@
 
 /****************************************************************
  * 
+ *  Private Definition
+ * 
+ ****************************************************************/
+
+#define USE_FN_TRACKPOINT_PAN
+// #define FN_SWITCH_TRACKPOINT_MIDPOINT
+#define SCALE_TRACKPOINT_SPEED
+#define MOUSE_SCALE_MIN 1
+
+/****************************************************************
+ * 
  *  Private Varibles
  * 
  ****************************************************************/
 
 static bool is_init_finish = false;
+static bool is_map_midkey_pan = 0;
 
 // keyboard pin array
 static uint rowscan_pins[18] = {
@@ -76,7 +88,7 @@ static uint wakeup_time = 0;
 static const uint wakeup_period_us = 15000000;
 
 // backlight duration
-static const int MAX_BACKLIGHT_ON_US = 20000000;
+static const int MAX_BACKLIGHT_ON_US = 60*1000000;
 
 static const char *TAG = "kb-task";
 
@@ -89,6 +101,10 @@ static const char *TAG = "kb-task";
 volatile bool is_usb_connected = false;
 volatile bool is_backlight_on = false;
 volatile int backlight_start_time;
+
+// Manage LED state since Win10 won't report such info on BLE.
+volatile bool is_caplk_on = false;
+volatile bool is_numlk_on = false;
 
 // bluetooth stuff
 extern bool is_ble_connected;
@@ -159,8 +175,10 @@ void kb_led_cb(uint8_t kbd_leds)
 {
   if (kbd_leds & KEYBOARD_LED_NUMLOCK) {
     LED_NUMLK_ON;
+    is_numlk_on = true;
   } else {
     LED_NUMLK_OFF;
+    is_numlk_on = false;
   }
 
   if (kbd_leds & KEYBOARD_LED_CAPSLOCK) {
@@ -168,8 +186,10 @@ void kb_led_cb(uint8_t kbd_leds)
     // Manually init it again...
     GPIO_INIT_OUT_PULLUP(LED_CAPLK);
     LED_CAPLK_ON;
+    is_caplk_on = true;
   } else {
     LED_CAPLK_OFF;
+    is_caplk_on = false;
   }
 }
 
@@ -487,6 +507,8 @@ static void init_matrix_keyboard(void)
   LED_F1_OFF;
   LED_FNLK_OFF;
   LED_NUMLK_OFF;
+  is_caplk_on = false;
+  is_numlk_on = false;
 }
 
 /**
@@ -508,7 +530,15 @@ static void do_fnfunc(fn_function_t fncode)
 {
   switch (fncode) {
   case FN_FNLOCK: {
-    // Seems mothing to do...
+#ifdef FN_SWITCH_TRACKPOINT_MIDPOINT
+    is_map_midkey_pan ^= 0x1;
+    if (is_map_midkey_pan) {
+      LED_FNLK_ON;
+    } else {
+      LED_FNLK_OFF;
+    }
+#endif
+    // Seems nothing else to do...
     break;
   }
   case FN_BACKLIGHT: {
@@ -538,7 +568,11 @@ static void led_task(void *arg)
     vTaskDelay(2000);
     while (!is_ble_connected && !is_usb_connected) {
       BACKLIGHT_OFF;
+      LED_CAPLK_OFF;
+      LED_NUMLK_OFF;
       is_backlight_on = false;
+      is_caplk_on = false;
+      is_numlk_on = false;
 
       // heart beat
       for (int i = 0; 
@@ -650,23 +684,28 @@ static void poll_trackpoint(uint poll_us)
 
   // suppress the first small motion
   uint currtime = esp_timer_get_time();
-  if (abs(dx) < 2
-   && abs(dy) < 2 
-   && (currtime-lasttime) > 10000000
-  ) {
-    dx = dy = 0;
-    lasttime = currtime;
-  }
+  // if (abs(dx) < 2
+  //  && abs(dy) < 2 
+  //  && (currtime-lasttime) > 10000000
+  // ) {
+  //   dx = dy = 0;
+  //   lasttime = currtime;
+  // }
 
   buttons &= 0b00000111;
   if (is_recv) {
+#ifndef USE_FN_TRACKPOINT_PAN
+  if (!is_map_midkey_pan) {
+    LED_FNLK_OFF;
+
     // mid key detection
     if (buttons & 0b00000100) {
       is_midkey = true;
       // printf("midkey press\n");
       if (dx != 0 || dy != 0) {
         // middle key for pan
-        pan_x = dx; pan_y = -dy;
+        pan_x = dx > 0 ? 1 : dx < 0 ? -1 : 0;
+        pan_y = dy < 0 ? 1 : dy > 0 ? -1 : 0;
         dx = dy = 0;
         is_pan = true;
         // printf("midkey pan\n");
@@ -688,13 +727,62 @@ static void poll_trackpoint(uint poll_us)
       }
       is_midkey = is_pan = false;
 
+      #ifdef SCALE_TRACKPOINT_SPEED
       // Scale the trackpoint mouse since it may be too slow...
-      const int MOUSE_SCALE_MIN = 1;
       if (dx > MOUSE_SCALE_MIN) dx += (dx-MOUSE_SCALE_MIN) * 2;
       else if (dx < -MOUSE_SCALE_MIN) dx += (dx+MOUSE_SCALE_MIN) * 2;
       if (dy > MOUSE_SCALE_MIN) dy += (dy-MOUSE_SCALE_MIN) * 2;
       else if (dy < -MOUSE_SCALE_MIN) dy += (dy+MOUSE_SCALE_MIN) * 2;
+      #endif
     }
+
+    if (is_usb_connected) {
+      tinyusb_hid_mouse_report(buttons & 0b00000011, dx, dy, pan_y, pan_x);
+    } else if (is_ble_connected) {
+      esp_hidd_send_mouse_value(buttons & 0b00000011, dx, dy, pan_y, pan_x);
+    }
+
+  } else {
+    LED_FNLK_ON;
+
+    #ifdef SCALE_TRACKPOINT_SPEED
+    // Scale the trackpoint mouse since it may be too slow...
+    if (dx > MOUSE_SCALE_MIN) dx += (dx-MOUSE_SCALE_MIN) * 2;
+    else if (dx < -MOUSE_SCALE_MIN) dx += (dx+MOUSE_SCALE_MIN) * 2;
+    if (dy > MOUSE_SCALE_MIN) dy += (dy-MOUSE_SCALE_MIN) * 2;
+    else if (dy < -MOUSE_SCALE_MIN) dy += (dy+MOUSE_SCALE_MIN) * 2;
+    #endif
+
+    if (is_usb_connected) {
+      tinyusb_hid_mouse_report(buttons, dx, dy, pan_y, pan_x);
+    } else if (is_ble_connected) {
+      esp_hidd_send_mouse_value(buttons, dx, dy, pan_y, pan_x);
+    }
+  }
+
+#else
+
+    if (BUTTON_FN_STATE == 0) {
+      // panning
+      pan_x = dx > 0 ? 1 : dx < 0 ? -1 : 0;
+      pan_y = dy < 0 ? 1 : dy > 0 ? -1 : 0;
+      dx = dy = 0;
+    } else {
+      #ifdef SCALE_TRACKPOINT_SPEED
+      // Scale the trackpoint mouse since it may be too slow...
+      if (dx > MOUSE_SCALE_MIN) dx += (dx-MOUSE_SCALE_MIN) * 2;
+      else if (dx < -MOUSE_SCALE_MIN) dx += (dx+MOUSE_SCALE_MIN) * 2;
+      if (dy > MOUSE_SCALE_MIN) dy += (dy-MOUSE_SCALE_MIN) * 2;
+      else if (dy < -MOUSE_SCALE_MIN) dy += (dy+MOUSE_SCALE_MIN) * 2;
+      #endif
+    }
+
+    if (is_usb_connected) {
+      tinyusb_hid_mouse_report(buttons, dx, dy, pan_y, pan_x);
+    } else if (is_ble_connected) {
+      esp_hidd_send_mouse_value(buttons, dx, dy, pan_y, pan_x);
+    }
+#endif
 
     if (is_backlight_on) {
       BACKLIGHT_ON;
@@ -703,12 +791,6 @@ static void poll_trackpoint(uint poll_us)
 
     // printf("Mouse %3d, %3d; Pan %3d, %3d; Buttons 0x%02x\n", dx, dy, pan_x, pan_y, buttons);
     lasttime = currtime;
-
-    if (is_usb_connected) {
-      tinyusb_hid_mouse_report(buttons & 0b00000011, dx, dy, pan_y, pan_x);
-    } else if (is_ble_connected) {
-      esp_hidd_send_mouse_value(buttons & 0b00000011, dx, dy, pan_y, pan_x);
-    }
   }
 }
 
@@ -819,6 +901,25 @@ void keyboard_task(void *arg)
         tinyusb_hid_keyboard_report(hidbuf);
       } else if (is_ble_connected) {
         esp_hidd_send_keyboard_value(hidbuf);
+      }
+
+      // Manage LED since Win10 won't report it.
+      if (hidbuf[2] == KEY_CAPSLOCK) {
+        if (is_caplk_on) {
+          LED_CAPLK_OFF;
+          is_caplk_on = false;
+        } else  {
+          LED_CAPLK_ON;
+          is_caplk_on = true;
+        }
+      } else if (hidbuf[2] == KEY_NUMLOCK) {
+        if (is_numlk_on) {
+          LED_NUMLK_OFF;
+          is_numlk_on = false;
+        } else {
+          LED_NUMLK_ON;
+          is_numlk_on = true;
+        }
       }
     }
     lasthid = hid;

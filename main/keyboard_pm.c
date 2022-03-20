@@ -54,21 +54,21 @@ static kb_pm_state_t pm_cfg[] = {
   [PM_IDLE_SHORT_TIME] = {
     .kb_int_us = 5000,    // *8 = 40ms per scan
     .ble_int_cnt = 32,    // *1.25 = 40ms BLE connection interval
-    .duration_us = 120000000,
+    .duration_us = 2*60*1000000,
     .is_sleep = true
   },
   // keyboard active but trackpoint inactive. 30mA with BLE
   [PM_KB_ACTIVE] = {
     .kb_int_us = 5000,    // *8 = 40ms per scan
     .ble_int_cnt = 20,    // *1.25 = 25ms BLE connection interval
-    .duration_us = 420000000,
+    .duration_us = 10*60*1000000,
     .is_sleep = true
   },
   // trackpoint active. 50mA with BLE
   [PM_KB_TP_ACTIVE] = {
     .kb_int_us = 5000,    // *8 = 40ms per scan
     .ble_int_cnt = 10,    // *1.25 = 12.5ms BLE connection interval
-    .duration_us = 120000000,
+    .duration_us = 5*60*1000000,
     .is_sleep = false
   },
   // charging, ~500mA
