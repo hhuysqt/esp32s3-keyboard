@@ -21,10 +21,70 @@ static char *s_str_descriptor[USB_STRING_DESCRIPTOR_ARRAY_SIZE];
 static uint8_t *s_config_descriptor = NULL;
 #define MAX_DESC_BUF_SIZE 32
 
+// Mouse Report Descriptor Template
+#define MY_HID_REPORT_DESC_MOUSE(...) \
+  HID_USAGE_PAGE ( HID_USAGE_PAGE_DESKTOP      )                   ,\
+  HID_USAGE      ( HID_USAGE_DESKTOP_MOUSE     )                   ,\
+  HID_COLLECTION ( HID_COLLECTION_APPLICATION  )                   ,\
+    /* Report ID if any */\
+    __VA_ARGS__ \
+    HID_USAGE      ( HID_USAGE_DESKTOP_POINTER )                   ,\
+    HID_COLLECTION ( HID_COLLECTION_PHYSICAL   )                   ,\
+      HID_USAGE_PAGE  ( HID_USAGE_PAGE_BUTTON  )                   ,\
+        HID_USAGE_MIN   ( 1                                      ) ,\
+        HID_USAGE_MAX   ( 5                                      ) ,\
+        HID_LOGICAL_MIN ( 0                                      ) ,\
+        HID_LOGICAL_MAX ( 1                                      ) ,\
+        /* Left, Right, Middle, Backward, Forward buttons */ \
+        HID_REPORT_COUNT( 5                                      ) ,\
+        HID_REPORT_SIZE ( 1                                      ) ,\
+        HID_INPUT       ( HID_DATA | HID_VARIABLE | HID_ABSOLUTE ) ,\
+        /* 3 bit padding */ \
+        HID_REPORT_COUNT( 1                                      ) ,\
+        HID_REPORT_SIZE ( 3                                      ) ,\
+        HID_INPUT       ( HID_CONSTANT                           ) ,\
+      HID_USAGE_PAGE  ( HID_USAGE_PAGE_DESKTOP )                   ,\
+        /* X, Y position [-127, 127] */ \
+        HID_USAGE       ( HID_USAGE_DESKTOP_X                    ) ,\
+        HID_USAGE       ( HID_USAGE_DESKTOP_Y                    ) ,\
+        HID_LOGICAL_MIN ( 0x81                                   ) ,\
+        HID_LOGICAL_MAX ( 0x7f                                   ) ,\
+        HID_REPORT_COUNT( 2                                      ) ,\
+        HID_REPORT_SIZE ( 8                                      ) ,\
+        HID_INPUT       ( HID_DATA | HID_VARIABLE | HID_RELATIVE ) ,\
+      HID_USAGE_PAGE  ( HID_USAGE_PAGE_DESKTOP )                   ,\
+        /* Verital wheel scroll [-127, 127] */ \
+        HID_USAGE       ( HID_USAGE_DESKTOP_WHEEL                )  ,\
+        HID_LOGICAL_MIN ( 0x81                                   )  ,\
+        HID_LOGICAL_MAX ( 0x7f                                   )  ,\
+        HID_REPORT_COUNT( 1                                      )  ,\
+        HID_REPORT_SIZE ( 8                                      )  ,\
+        HID_INPUT       ( HID_DATA | HID_VARIABLE | HID_RELATIVE )  ,\
+      HID_USAGE_PAGE  ( HID_USAGE_PAGE_CONSUMER ), \
+       /* Horizontal wheel scroll [-127, 127] */ \
+        HID_USAGE_N     ( HID_USAGE_CONSUMER_AC_PAN, 2           ), \
+        HID_LOGICAL_MIN ( 0x81                                   ), \
+        HID_LOGICAL_MAX ( 0x7f                                   ), \
+        HID_REPORT_COUNT( 1                                      ), \
+        HID_REPORT_SIZE ( 8                                      ), \
+        HID_INPUT       ( HID_DATA | HID_VARIABLE | HID_RELATIVE ), \
+      HID_USAGE_PAGE  ( HID_USAGE_PAGE_DESKTOP )                   ,\
+        /* Resolution multipler for high-resolution mouse*/ \
+        HID_USAGE       ( HID_USAGE_DESKTOP_RESOLUTION_MULTIPLIER) ,\
+        HID_LOGICAL_MIN ( 0                                      ) ,\
+        HID_LOGICAL_MAX ( 15                                    ) ,\
+        HID_PHYSICAL_MIN ( 1                                     ) ,\
+        HID_PHYSICAL_MAX ( 16                                   ) ,\
+        HID_REPORT_COUNT( 1                                      ) ,\
+        HID_REPORT_SIZE ( 8                                      ) ,\
+        HID_FEATURE     ( HID_DATA | HID_VARIABLE | HID_ABSOLUTE ) ,\
+    HID_COLLECTION_END                                            , \
+  HID_COLLECTION_END \
+
 #if CFG_TUD_HID //HID Report Descriptor
 uint8_t const desc_hid_report[] = {
     TUD_HID_REPORT_DESC_KEYBOARD(HID_REPORT_ID(REPORT_ID_KEYBOARD)),
-    TUD_HID_REPORT_DESC_MOUSE(HID_REPORT_ID(REPORT_ID_MOUSE)),
+    MY_HID_REPORT_DESC_MOUSE(HID_REPORT_ID(REPORT_ID_MOUSE)),
     TUD_HID_REPORT_DESC_CONSUMER(HID_REPORT_ID(REPORT_ID_CONSUMER))
 };
 #endif

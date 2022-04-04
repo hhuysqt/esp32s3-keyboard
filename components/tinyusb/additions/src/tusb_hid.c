@@ -19,8 +19,11 @@
 #include "esp_log.h"
 #include "tusb_hid.h"
 #include "descriptors_control.h"
+#include "esp_debug_helpers.h"
 
 static const char *TAG = "tusb_hid";
+
+uint8_t curr_resolution_multiplier = 1;
 
 void tinyusb_hid_mouse_report(
     uint8_t buttons, int8_t x, int8_t y, int8_t vertical, int8_t horizontal)
@@ -114,14 +117,23 @@ void tud_hid_report_complete_cb(uint8_t itf, uint8_t const *report, uint8_t len)
 // Invoked when received GET_REPORT control request
 // Application must fill buffer report's content and return its length.
 // Return zero will cause the stack to STALL request
-uint16_t tud_hid_get_report_cb(uint8_t itf, uint8_t report_id, hid_report_type_t report_type, uint8_t *buffer, uint16_t reqlen)
+uint16_t tud_hid_get_report_cb(uint8_t instance, uint8_t report_id, hid_report_type_t report_type, uint8_t *buffer, uint16_t reqlen)
 {
-    // TODO not Implemented
-    (void) itf;
-    (void) report_id;
-    (void) report_type;
-    (void) buffer;
-    (void) reqlen;
+    (void) instance;
+    // esp_backtrace_print(8);
+    // ESP_LOGI(TAG, "get instance %d, report id %d, report type %d, len %d", 
+    //   instance, report_id, report_type, reqlen);
+
+    if (report_type == HID_REPORT_TYPE_FEATURE) {
+      if (report_id == REPORT_ID_MOUSE && reqlen >= 1) {
+        /**
+         * Return the resolution multiplier for high-resolution pointer & wheel.
+         * Windows may deliberately aquire for this parameter, whereas Linux may not...
+         */
+        buffer[0] = curr_resolution_multiplier;
+        return 1;
+      }
+    }
 
     return 0;
 }
@@ -137,16 +149,26 @@ void __attribute__((weak)) kb_led_cb(uint8_t kbd_leds)
 void tud_hid_set_report_cb(uint8_t instance, uint8_t report_id, hid_report_type_t report_type, uint8_t const* buffer, uint16_t bufsize)
 {
   (void) instance;
+  ESP_LOGI(TAG, "set instance %d, report id %d, report type %d, len %d, buf[0] 0x%02x", 
+    instance, report_id, report_type, bufsize, buffer[0]);
 
-  if (report_type == HID_REPORT_TYPE_OUTPUT)
-  {
+  if (report_type == HID_REPORT_TYPE_OUTPUT) {
     // Set keyboard LED e.g Capslock, Numlock etc...
-    if (report_id == REPORT_ID_KEYBOARD)
-    {
+    if (report_id == REPORT_ID_KEYBOARD) {
       // bufsize should be (at least) 1
       if ( bufsize < 1 ) return;
 
       kb_led_cb(buffer[0]);
+    }
+  } else if (report_type == HID_REPORT_TYPE_FEATURE) {
+    if (report_id == REPORT_ID_MOUSE) {
+      /**
+       * Set the resolution multiplier.
+       * Windows should set it on connection.
+       */
+      if (bufsize >= 1) {
+        curr_resolution_multiplier = buffer[0];
+      }
     }
   }
 }
