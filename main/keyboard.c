@@ -60,8 +60,7 @@
  * 
  ****************************************************************/
 
-#define USE_FN_TRACKPOINT_PAN
-// #define FN_SWITCH_TRACKPOINT_MIDPOINT
+// #define USE_FN_TRACKPOINT_PAN
 #define SCALE_TRACKPOINT_SPEED
 #define MOUSE_SCALE_MIN 1
 
@@ -72,7 +71,7 @@
  ****************************************************************/
 
 static bool is_init_finish = false;
-static bool is_map_midkey_pan = 0;
+static bool is_fn_locked = 0;
 
 // keyboard pin array
 static uint rowscan_pins[18] = {
@@ -88,7 +87,7 @@ static uint wakeup_time = 0;
 static const uint wakeup_period_us = 15000000;
 
 // backlight duration
-static const int MAX_BACKLIGHT_ON_US = 60*1000000;
+static const int MAX_BACKLIGHT_ON_US = 10*60*1000000;
 
 static const char *TAG = "kb-task";
 
@@ -530,15 +529,13 @@ static void do_fnfunc(fn_function_t fncode)
 {
   switch (fncode) {
   case FN_FNLOCK: {
-#ifdef FN_SWITCH_TRACKPOINT_MIDPOINT
-    is_map_midkey_pan ^= 0x1;
-    if (is_map_midkey_pan) {
+    // Fn lock LED
+    is_fn_locked ^= 0x1;
+    if (is_fn_locked) {
       LED_FNLK_ON;
     } else {
       LED_FNLK_OFF;
     }
-#endif
-    // Seems nothing else to do...
     break;
   }
   case FN_BACKLIGHT: {
@@ -695,9 +692,6 @@ static void poll_trackpoint(uint poll_us)
   buttons &= 0b00000111;
   if (is_recv) {
 #ifndef USE_FN_TRACKPOINT_PAN
-  if (!is_map_midkey_pan) {
-    LED_FNLK_OFF;
-
     // mid key detection
     if (buttons & 0b00000100) {
       is_midkey = true;
@@ -741,24 +735,6 @@ static void poll_trackpoint(uint poll_us)
     } else if (is_ble_connected) {
       esp_hidd_send_mouse_value(buttons & 0b00000011, dx, dy, pan_y, pan_x);
     }
-
-  } else {
-    LED_FNLK_ON;
-
-    #ifdef SCALE_TRACKPOINT_SPEED
-    // Scale the trackpoint mouse since it may be too slow...
-    if (dx > MOUSE_SCALE_MIN) dx += (dx-MOUSE_SCALE_MIN) * 2;
-    else if (dx < -MOUSE_SCALE_MIN) dx += (dx+MOUSE_SCALE_MIN) * 2;
-    if (dy > MOUSE_SCALE_MIN) dy += (dy-MOUSE_SCALE_MIN) * 2;
-    else if (dy < -MOUSE_SCALE_MIN) dy += (dy+MOUSE_SCALE_MIN) * 2;
-    #endif
-
-    if (is_usb_connected) {
-      tinyusb_hid_mouse_report(buttons, dx, dy, pan_y, pan_x);
-    } else if (is_ble_connected) {
-      esp_hidd_send_mouse_value(buttons, dx, dy, pan_y, pan_x);
-    }
-  }
 
 #else
 
@@ -840,26 +816,42 @@ void keyboard_task(void *arg)
       for (int j = 0; j < 18; j++) {
         if (gpio_get_level(rowscan_pins[j]) == 0) {
           // thisi = i; thisj = j;
-          if (BUTTON_FN_STATE != 0) {
-            // normal keyboard usage
-            int hidkey = search_hid_key(i, j);
-            if (hidkey > 0) {
+          int hidkey = search_hid_key(i, j);
+          if (hidkey > 0) {
+            if (BUTTON_FN_STATE != 0) {
+              // normal keyboard usage
               if (hidkey >= KEY_LEFTCTRL && hidkey <= KEY_RIGHTMETA) {
                 hidbuf[0] |= 1u << (hidkey & 0x07);
+              } else if (is_fn_locked && hidkey >= KEY_F1 && hidkey <= KEY_F12) {
+                fn_keytable_t *fnitem = search_fn(i, j);
+                if (fnitem != NULL) {
+                  is_key_pressed = true;
+                  hotkey = fnitem->hidcode;
+                  fnfunc = fnitem->fncode;
+                  hid = 0;  // clear keyboard key
+                }
               } else if (!is_key_pressed) {
                 hidbuf[2] = hidkey;
                 is_key_pressed = true;
+                hotkey = 0; // clear hotkey
               }
-              hotkey = 0; // clear hotkey
-            }
-          } else {
-            // hotkey
-            fn_keytable_t *fnitem = search_fn(i, j);
-            if (fnitem != NULL) {
-              is_key_pressed = true;
-              hotkey = fnitem->hidcode;
-              fnfunc = fnitem->fncode;
-              hid = 0;  // clear keyboard key
+            } else {
+              if (is_fn_locked && hidkey >= KEY_F1 && hidkey <= KEY_F12) {
+                if (!is_key_pressed) {
+                  hidbuf[2] = hidkey;
+                  is_key_pressed = true;
+                  hotkey = 0;
+                }
+              } else {
+                // hotkey
+                fn_keytable_t *fnitem = search_fn(i, j);
+                if (fnitem != NULL) {
+                  is_key_pressed = true;
+                  hotkey = fnitem->hidcode;
+                  fnfunc = fnitem->fncode;
+                  hid = 0;  // clear keyboard key
+                }
+              }
             }
           }
         }
