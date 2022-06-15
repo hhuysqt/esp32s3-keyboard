@@ -807,6 +807,7 @@ void keyboard_task(void *arg)
     bool is_key_pressed = false;
     uint64_t hid = 0;
     uint8_t *hidbuf = (uint8_t*)&hid;
+    int nr_hidkey = 0;
     uint16_t hotkey = 0;
     fn_function_t fnfunc = FN_NOP;
 
@@ -830,8 +831,9 @@ void keyboard_task(void *arg)
                   fnfunc = fnitem->fncode;
                   hid = 0;  // clear keyboard key
                 }
-              } else if (!is_key_pressed) {
-                hidbuf[2] = hidkey;
+              } else if (nr_hidkey < 6) {
+                hidbuf[2+nr_hidkey] = hidkey;
+                nr_hidkey++;
                 is_key_pressed = true;
                 hotkey = 0; // clear hotkey
               }
