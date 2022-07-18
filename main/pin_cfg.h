@@ -116,7 +116,7 @@
 
 #define GPIO_INIT_IN_FLOATING(pinnum) \
   do { \
-    gpio_pad_select_gpio(pinnum); \
+    gpio_reset_pin(pinnum); \
     gpio_set_direction(pinnum, GPIO_MODE_INPUT); \
     gpio_pullup_dis(pinnum); \
     gpio_pulldown_dis(pinnum); \
@@ -124,7 +124,7 @@
 
 #define GPIO_INIT_IN_PULLUP(pinnum) \
   do { \
-    gpio_pad_select_gpio(pinnum); \
+    gpio_reset_pin(pinnum); \
     gpio_set_direction(pinnum, GPIO_MODE_INPUT); \
     gpio_pullup_en(pinnum); \
     gpio_pulldown_dis(pinnum); \
@@ -132,7 +132,7 @@
 
 #define GPIO_INIT_IN_PULLDOWN(pinnum) \
   do { \
-    gpio_pad_select_gpio(pinnum); \
+    gpio_reset_pin(pinnum); \
     gpio_set_direction(pinnum, GPIO_MODE_INPUT); \
     gpio_pullup_dis(pinnum); \
     gpio_pulldown_en(pinnum); \
@@ -152,14 +152,14 @@
 
 #define GPIO_INIT_OUT_PULLUP(pinnum) \
   do { \
-    gpio_pad_select_gpio(pinnum); \
+    gpio_reset_pin(pinnum); \
     gpio_set_direction(pinnum, GPIO_MODE_OUTPUT); \
     gpio_pullup_en(pinnum); \
   } while(0)
 
 #define GPIO_INIT_OUT_PULLDOWN(pinnum) \
   do { \
-    gpio_pad_select_gpio(pinnum); \
+    gpio_reset_pin(pinnum); \
     gpio_set_direction(pinnum, GPIO_MODE_OUTPUT); \
     gpio_pulldown_en(pinnum); \
   } while(0)

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "sdkconfig.h"
+#include "rom/gpio.h"
 #include "driver/gpio.h"
 #include "driver/periph_ctrl.h"
 #include "esp_log.h"

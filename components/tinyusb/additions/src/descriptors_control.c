@@ -235,7 +235,6 @@ void tusb_set_descriptor(tusb_desc_device_t *dev_desc, const char **str_desc)
         memcpy(s_str_descriptor, str_desc,
                sizeof(s_str_descriptor[0])*USB_STRING_DESCRIPTOR_ARRAY_SIZE);
     }
-    tusb_desc_set = true;
 }
 
 void tusb_set_config_descriptor(const uint8_t *config_desc)
@@ -271,5 +270,4 @@ void tusb_clear_descriptor(void)
     memset(&s_str_descriptor, 0, sizeof(s_str_descriptor));
     free(s_config_descriptor);
     s_config_descriptor = NULL;
-    tusb_desc_set = false;
 }

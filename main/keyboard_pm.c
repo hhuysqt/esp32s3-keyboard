@@ -87,7 +87,7 @@ static volatile uint last_pm_timestamp = 0;
 static SemaphoreHandle_t pm_lock;
 
 // charging pin event queue
-static xQueueHandle gpio_evt_queue = NULL;
+static QueueHandle_t gpio_evt_queue = NULL;
 
 static const char *TAG = "kb-pm";
 
