@@ -791,6 +791,7 @@ void keyboard_task(void *arg)
   xTaskCreate(&led_task,  "led_task", 4096, NULL, configMAX_PRIORITIES, NULL);
   ESP_LOGI(TAG, "Init finish");
 
+  bool last_is_key_pressed = false;
   uint64_t lasthid = 0;
   uint16_t lasthotkey = 0;
   fn_function_t lastfnfunc = FN_NOP;
@@ -812,10 +813,13 @@ void keyboard_task(void *arg)
     fn_function_t fnfunc = FN_NOP;
 
     // int thisi = -1, thisj = -1;
-
+    bool has_phantom_key = false;
+    uint32_t rows_connected = 0;
     for (int i = 0; i < 8; i++) {
+      uint32_t rows_cur_col = 0; // rows connected with the current col
       for (int j = 0; j < 18; j++) {
         if (gpio_get_level(rowscan_pins[j]) == 0) {
+          rows_cur_col |= 1 << j;
           // thisi = i; thisj = j;
           int hidkey = search_hid_key(i, j);
           if (hidkey > 0) {
@@ -858,6 +862,15 @@ void keyboard_task(void *arg)
           }
         }
       }
+
+      // rows that are connected by both current col and previous cols, which
+      // lead to "phantom keys" if more than one.
+      uint32_t rows_connected_again = rows_cur_col & rows_connected;
+
+      // If and only if less than two bits is 1, the following expr will be 0
+      if (rows_connected_again & (rows_connected_again - 1))
+        has_phantom_key = true;
+      rows_connected |= rows_cur_col;
       kb_set_column_scan(i);
 
       // static int nrtry = 0;
@@ -868,6 +881,12 @@ void keyboard_task(void *arg)
       //   nrtry++;
       //   printf("pend time %d\n", curtime-lasttime);
       // }
+    }
+    if (has_phantom_key){
+      hotkey = lasthotkey;
+      fnfunc = lastfnfunc;
+      hid = lasthid;
+      is_key_pressed = last_is_key_pressed;
     }
 
     uint currtime = esp_timer_get_time();
@@ -885,6 +904,7 @@ void keyboard_task(void *arg)
     } else {
       flush_power_state(PM_IDLE_LONG_TIME);
     }
+    last_is_key_pressed = is_key_pressed;
 
     if (hid != lasthid) {
       // printf("%02x %02x %02x %02x %02x %02x %02x %02x\n",
