@@ -412,7 +412,7 @@ static void init_trackpad(void)
   ps2_gpio_init();
 
   // reset mouse
-  gpio_pad_select_gpio(PS2_RESET_PIN);
+  gpio_reset_pin(PS2_RESET_PIN);
   gpio_set_direction(PS2_RESET_PIN, GPIO_MODE_OUTPUT);
   gpio_set_level(PS2_RESET_PIN, 1);
   vTaskDelay(10 / portTICK_PERIOD_MS);
