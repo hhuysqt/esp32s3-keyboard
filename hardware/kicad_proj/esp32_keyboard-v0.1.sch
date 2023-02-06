@@ -1,0 +1,1754 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L mylib:ESP32-S3-WROOM-1 U6
+U 1 1 619FD683
+P 9550 4800
+F 0 "U6" H 9550 6067 50  0000 C CNN
+F 1 "ESP32-S3-WROOM-1" H 9550 5976 50  0000 C CNN
+F 2 "mylib:ESP32-S3-WROOM-1" H 9550 5500 50  0001 C CNN
+F 3 "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_cn.pdf" H 8850 4850 50  0001 C CNN
+	1    9550 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74LS138 U5
+U 1 1 61A00BB8
+P 5700 6700
+F 0 "U5" H 5300 7300 50  0000 C CNN
+F 1 "74LS138" H 5350 7150 50  0000 C CNN
+F 2 "Package_SO:SSOP-16_4.4x5.2mm_P0.65mm" H 5700 6700 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS138" H 5700 6700 50  0001 C CNN
+	1    5700 6700
+	1    0    0    -1  
+$EndComp
+$Comp
+L mylib:Keyboard-40p U1
+U 1 1 61A01EE5
+P 1150 4100
+F 0 "U1" H 575 685 50  0000 C CNN
+F 1 "Keyboard-40p" H 575 776 50  0000 C CNN
+F 2 "mylib:Keyboard-40" H 1150 4100 50  0001 C CNN
+F 3 "" H 1150 4100 50  0001 C CNN
+	1    1150 4100
+	-1   0    0    1   
+$EndComp
+$Comp
+L mylib:Keyboard-30p U3
+U 1 1 61A05729
+P 4550 4100
+F 0 "U3" H 3975 1685 50  0000 C CNN
+F 1 "Keyboard-30p" H 3975 1776 50  0000 C CNN
+F 2 "Connector_FFC-FPC:TE_3-84952-0_1x30-1MP_P1.0mm_Horizontal" H 4550 4100 50  0001 C CNN
+F 3 "" H 4550 4100 50  0001 C CNN
+	1    4550 4100
+	-1   0    0    1   
+$EndComp
+$Comp
+L mylib:Trackpoint-10p U4
+U 1 1 61A09F11
+P 3400 6550
+F 0 "U4" H 3425 7215 50  0000 C CNN
+F 1 "Trackpoint-10p" H 3425 7124 50  0000 C CNN
+F 2 "Connector_FFC-FPC:TE_1-84952-0_1x10-1MP_P1.0mm_Horizontal" H 3200 7100 50  0001 C CNN
+F 3 "" H 3200 7100 50  0001 C CNN
+	1    3400 6550
+	1    0    0    -1  
+$EndComp
+$Comp
+L mylib:Trackpoint-12p U2
+U 1 1 61A0AE99
+P 1600 6550
+F 0 "U2" H 1650 7415 50  0000 C CNN
+F 1 "Trackpoint-12p" H 1650 7324 50  0000 C CNN
+F 2 "mylib:Trackpad-12p" H 1650 7300 50  0001 C CNN
+F 3 "" H 1650 7300 50  0001 C CNN
+	1    1600 6550
+	1    0    0    -1  
+$EndComp
+Text Label 6200 6500 0    50   ~ 0
+COL1
+Text Label 6200 6600 0    50   ~ 0
+COL2
+Text Label 6200 6700 0    50   ~ 0
+COL3
+Text Label 6200 6800 0    50   ~ 0
+COL4
+Text Label 6200 6900 0    50   ~ 0
+COL5
+Text Label 6200 7000 0    50   ~ 0
+COL6
+Text Label 6200 7100 0    50   ~ 0
+COL7
+Text Label 5200 6400 2    50   ~ 0
+COL_SEL0
+Text Label 5200 6500 2    50   ~ 0
+COL_SEL1
+Text Label 5200 6600 2    50   ~ 0
+COL_SEL2
+$Comp
+L power:Earth #PWR0101
+U 1 1 61A16E17
+P 5200 7100
+F 0 "#PWR0101" H 5200 6850 50  0001 C CNN
+F 1 "Earth" H 5200 6950 50  0001 C CNN
+F 2 "" H 5200 7100 50  0001 C CNN
+F 3 "~" H 5200 7100 50  0001 C CNN
+	1    5200 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:Earth #PWR0102
+U 1 1 61A17CFA
+P 5700 7400
+F 0 "#PWR0102" H 5700 7150 50  0001 C CNN
+F 1 "Earth" H 5700 7250 50  0001 C CNN
+F 2 "" H 5700 7400 50  0001 C CNN
+F 3 "~" H 5700 7400 50  0001 C CNN
+	1    5700 7400
+	1    0    0    -1  
+$EndComp
+Text Label 6200 6400 0    50   ~ 0
+COL0
+$Comp
+L Connector:USB_C_Receptacle_USB2.0 P1
+U 1 1 61A2A403
+P 7050 1600
+F 0 "P1" H 7157 2467 50  0000 C CNN
+F 1 "USB_C_USB2.0" H 7157 2376 50  0000 C CNN
+F 2 "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12" H 7200 1600 50  0001 C CNN
+F 3 "https://www.usb.org/sites/default/files/documents/usb_type-c.zip" H 7200 1600 50  0001 C CNN
+	1    7050 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Regulator_Linear:XC6206PxxxMR U8
+U 1 1 61A30FB6
+P 10600 2150
+F 0 "U8" H 10600 2392 50  0000 C CNN
+F 1 "XC6206PxxxMR" H 10600 2301 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 10600 2375 50  0001 C CIN
+F 3 "https://www.torexsemi.com/file/xc6206/XC6206.pdf" H 10600 2150 50  0001 C CNN
+	1    10600 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0103
+U 1 1 61A3EFC5
+P 8000 1000
+F 0 "#PWR0103" H 8000 850 50  0001 C CNN
+F 1 "+5V" H 8015 1173 50  0000 C CNN
+F 2 "" H 8000 1000 50  0001 C CNN
+F 3 "" H 8000 1000 50  0001 C CNN
+	1    8000 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Battery_Cell BT1
+U 1 1 61A40DD9
+P 10050 1250
+F 0 "BT1" H 9900 1400 50  0000 L CNN
+F 1 "Battery" H 9900 1200 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" V 10050 1310 50  0001 C CNN
+F 3 "~" V 10050 1310 50  0001 C CNN
+	1    10050 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:Earth #PWR0104
+U 1 1 61A451FE
+P 8950 1650
+F 0 "#PWR0104" H 8950 1400 50  0001 C CNN
+F 1 "Earth" H 8950 1500 50  0001 C CNN
+F 2 "" H 8950 1650 50  0001 C CNN
+F 3 "~" H 8950 1650 50  0001 C CNN
+	1    8950 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:Earth #PWR0105
+U 1 1 61A48F16
+P 9450 1200
+F 0 "#PWR0105" H 9450 950 50  0001 C CNN
+F 1 "Earth" H 9450 1050 50  0001 C CNN
+F 2 "" H 9450 1200 50  0001 C CNN
+F 3 "~" H 9450 1200 50  0001 C CNN
+	1    9450 1200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R_Small R11
+U 1 1 61A4A3EF
+P 9550 1550
+F 0 "R11" H 9600 1500 50  0000 L CNN
+F 1 "1.2k" H 9350 1500 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 9550 1550 50  0001 C CNN
+F 3 "~" H 9550 1550 50  0001 C CNN
+	1    9550 1550
+	1    0    0    -1  
+$EndComp
+Text Notes 9800 1700 0    50   ~ 0
+Rprog Charge Current\n1.2K  1A\n2K    580mA
+$Comp
+L power:Earth #PWR0106
+U 1 1 61A4B78B
+P 9550 1650
+F 0 "#PWR0106" H 9550 1400 50  0001 C CNN
+F 1 "Earth" H 9550 1500 50  0001 C CNN
+F 2 "" H 9550 1650 50  0001 C CNN
+F 3 "~" H 9550 1650 50  0001 C CNN
+	1    9550 1650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9450 1400 9550 1400
+Wire Wire Line
+	9550 1400 9550 1450
+Wire Wire Line
+	9750 1000 9750 1050
+$Comp
+L power:+BATT #PWR0107
+U 1 1 61A51729
+P 10700 1300
+F 0 "#PWR0107" H 10700 1150 50  0001 C CNN
+F 1 "+BATT" V 10715 1428 50  0000 L CNN
+F 2 "" H 10700 1300 50  0001 C CNN
+F 3 "" H 10700 1300 50  0001 C CNN
+	1    10700 1300
+	0    1    1    0   
+$EndComp
+$Comp
+L power:Earth #PWR0108
+U 1 1 61A51BBA
+P 9750 1350
+F 0 "#PWR0108" H 9750 1100 50  0001 C CNN
+F 1 "Earth" H 9750 1200 50  0001 C CNN
+F 2 "" H 9750 1350 50  0001 C CNN
+F 3 "~" H 9750 1350 50  0001 C CNN
+	1    9750 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED_Small D1
+U 1 1 61A53755
+P 8350 1300
+F 0 "D1" H 8450 1200 50  0000 C CNN
+F 1 "RED" H 8350 1250 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric" V 8350 1300 50  0001 C CNN
+F 3 "~" V 8350 1300 50  0001 C CNN
+	1    8350 1300
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:LED_Small D2
+U 1 1 61A548D0
+P 8350 1400
+F 0 "D2" H 8350 1550 50  0000 C CNN
+F 1 "GREEN" H 8350 1500 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric" V 8350 1400 50  0001 C CNN
+F 3 "~" V 8350 1400 50  0001 C CNN
+	1    8350 1400
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R_Small R9
+U 1 1 61A590C5
+P 8150 1300
+F 0 "R9" V 8050 1250 50  0000 C CNN
+F 1 "1.2k" V 8150 1300 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 8150 1300 50  0001 C CNN
+F 3 "~" H 8150 1300 50  0001 C CNN
+	1    8150 1300
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R10
+U 1 1 61A5C8FA
+P 8150 1400
+F 0 "R10" V 8250 1350 50  0000 C CNN
+F 1 "1.2k" V 8150 1400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 8150 1400 50  0001 C CNN
+F 3 "~" H 8150 1400 50  0001 C CNN
+	1    8150 1400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7650 1000 8000 1000
+Wire Wire Line
+	8450 1100 8350 1100
+Wire Wire Line
+	8350 1100 8350 1000
+Connection ~ 8350 1000
+Wire Wire Line
+	8350 1000 8450 1000
+Wire Wire Line
+	8000 1000 8000 1300
+Wire Wire Line
+	8000 1400 8050 1400
+Connection ~ 8000 1000
+Wire Wire Line
+	8000 1000 8350 1000
+Wire Wire Line
+	8050 1300 8000 1300
+Connection ~ 8000 1300
+Wire Wire Line
+	8000 1300 8000 1400
+Wire Wire Line
+	9450 1000 9750 1000
+Connection ~ 9750 1000
+$Comp
+L power:Earth #PWR0109
+U 1 1 61A828AB
+P 10600 2450
+F 0 "#PWR0109" H 10600 2200 50  0001 C CNN
+F 1 "Earth" H 10600 2300 50  0001 C CNN
+F 2 "" H 10600 2450 50  0001 C CNN
+F 3 "~" H 10600 2450 50  0001 C CNN
+	1    10600 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0110
+U 1 1 61A83378
+P 11000 2150
+F 0 "#PWR0110" H 11000 2000 50  0001 C CNN
+F 1 "+3V3" H 11015 2323 50  0000 C CNN
+F 2 "" H 11000 2150 50  0001 C CNN
+F 3 "" H 11000 2150 50  0001 C CNN
+	1    11000 2150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11000 2150 10900 2150
+$Comp
+L power:Earth #PWR0111
+U 1 1 61A85616
+P 7050 2500
+F 0 "#PWR0111" H 7050 2250 50  0001 C CNN
+F 1 "Earth" H 7050 2350 50  0001 C CNN
+F 2 "" H 7050 2500 50  0001 C CNN
+F 3 "~" H 7050 2500 50  0001 C CNN
+	1    7050 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:Earth #PWR0112
+U 1 1 61A86C57
+P 6750 2500
+F 0 "#PWR0112" H 6750 2250 50  0001 C CNN
+F 1 "Earth" H 6750 2350 50  0001 C CNN
+F 2 "" H 6750 2500 50  0001 C CNN
+F 3 "~" H 6750 2500 50  0001 C CNN
+	1    6750 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0113
+U 1 1 61A8D046
+P 8650 2100
+F 0 "#PWR0113" H 8650 1950 50  0001 C CNN
+F 1 "+5V" H 8665 2273 50  0000 C CNN
+F 2 "" H 8650 2100 50  0001 C CNN
+F 3 "" H 8650 2100 50  0001 C CNN
+	1    8650 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+BATT #PWR0114
+U 1 1 61A8D882
+P 8900 2100
+F 0 "#PWR0114" H 8900 1950 50  0001 C CNN
+F 1 "+BATT" H 8915 2273 50  0000 C CNN
+F 2 "" H 8900 2100 50  0001 C CNN
+F 3 "" H 8900 2100 50  0001 C CNN
+	1    8900 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0115
+U 1 1 61A8E09F
+P 9150 2100
+F 0 "#PWR0115" H 9150 1950 50  0001 C CNN
+F 1 "+3V3" H 9165 2273 50  0000 C CNN
+F 2 "" H 9150 2100 50  0001 C CNN
+F 3 "" H 9150 2100 50  0001 C CNN
+	1    9150 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 61A90106
+P 8650 2250
+F 0 "C2" H 8650 2350 50  0000 L CNN
+F 1 "10u" H 8650 2150 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8688 2100 50  0001 C CNN
+F 3 "~" H 8650 2250 50  0001 C CNN
+	1    8650 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C3
+U 1 1 61A908EF
+P 8900 2250
+F 0 "C3" H 8900 2350 50  0000 L CNN
+F 1 "10u" H 8900 2150 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8938 2100 50  0001 C CNN
+F 3 "~" H 8900 2250 50  0001 C CNN
+	1    8900 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C4
+U 1 1 61A90EBA
+P 9150 2250
+F 0 "C4" H 9150 2350 50  0000 L CNN
+F 1 "10u" H 9150 2150 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 9188 2100 50  0001 C CNN
+F 3 "~" H 9150 2250 50  0001 C CNN
+	1    9150 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C5
+U 1 1 61A914D1
+P 9350 2250
+F 0 "C5" H 9350 2350 50  0000 L CNN
+F 1 "10u" H 9350 2150 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 9388 2100 50  0001 C CNN
+F 3 "~" H 9350 2250 50  0001 C CNN
+	1    9350 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9150 2100 9350 2100
+Connection ~ 9150 2100
+$Comp
+L power:Earth #PWR0116
+U 1 1 61A936CD
+P 8650 2400
+F 0 "#PWR0116" H 8650 2150 50  0001 C CNN
+F 1 "Earth" H 8650 2250 50  0001 C CNN
+F 2 "" H 8650 2400 50  0001 C CNN
+F 3 "~" H 8650 2400 50  0001 C CNN
+	1    8650 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:Earth #PWR0117
+U 1 1 61A93E41
+P 8900 2400
+F 0 "#PWR0117" H 8900 2150 50  0001 C CNN
+F 1 "Earth" H 8900 2250 50  0001 C CNN
+F 2 "" H 8900 2400 50  0001 C CNN
+F 3 "~" H 8900 2400 50  0001 C CNN
+	1    8900 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:Earth #PWR0118
+U 1 1 61A94596
+P 9150 2400
+F 0 "#PWR0118" H 9150 2150 50  0001 C CNN
+F 1 "Earth" H 9150 2250 50  0001 C CNN
+F 2 "" H 9150 2400 50  0001 C CNN
+F 3 "~" H 9150 2400 50  0001 C CNN
+	1    9150 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:Earth #PWR0119
+U 1 1 61A94C43
+P 9350 2400
+F 0 "#PWR0119" H 9350 2150 50  0001 C CNN
+F 1 "Earth" H 9350 2250 50  0001 C CNN
+F 2 "" H 9350 2400 50  0001 C CNN
+F 3 "~" H 9350 2400 50  0001 C CNN
+	1    9350 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_SPDT SW1
+U 1 1 61B4BA8F
+P 10500 1200
+F 0 "SW1" H 10500 1393 50  0000 C CNN
+F 1 "SW_SPDT" H 10500 1394 50  0001 C CNN
+F 2 "mylib:MSK22D14G2-SWITCH" H 10500 1200 50  0001 C CNN
+F 3 "~" H 10500 1200 50  0001 C CNN
+	1    10500 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C8
+U 1 1 61B79E21
+P 9750 1200
+F 0 "C8" H 9650 1300 50  0000 L CNN
+F 1 "10u" H 9600 1100 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 9788 1050 50  0001 C CNN
+F 3 "~" H 9750 1200 50  0001 C CNN
+	1    9750 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:Earth #PWR0121
+U 1 1 61B907CD
+P 10050 1350
+F 0 "#PWR0121" H 10050 1100 50  0001 C CNN
+F 1 "Earth" H 10050 1200 50  0001 C CNN
+F 2 "" H 10050 1350 50  0001 C CNN
+F 3 "~" H 10050 1350 50  0001 C CNN
+	1    10050 1350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9750 1000 10050 1000
+Wire Wire Line
+	10050 1050 10050 1000
+Connection ~ 10050 1000
+Wire Wire Line
+	10050 1000 10300 1000
+$Comp
+L power:+5V #PWR0122
+U 1 1 61BBBB19
+P 10000 2050
+F 0 "#PWR0122" H 10000 1900 50  0001 C CNN
+F 1 "+5V" V 10015 2178 50  0000 L CNN
+F 2 "" H 10000 2050 50  0001 C CNN
+F 3 "" H 10000 2050 50  0001 C CNN
+	1    10000 2050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Small_ALT D3
+U 1 1 61BBD68E
+P 10100 2050
+F 0 "D3" H 10100 1950 50  0000 C CNN
+F 1 "D_Small_ALT" H 10100 2166 50  0001 C CNN
+F 2 "Diode_SMD:D_SOD-123" V 10100 2050 50  0001 C CNN
+F 3 "~" V 10100 2050 50  0001 C CNN
+	1    10100 2050
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:D_Small_ALT D4
+U 1 1 61BBE3B5
+P 10100 2150
+F 0 "D4" H 10100 2250 50  0000 C CNN
+F 1 "D_Small_ALT" H 10100 2266 50  0001 C CNN
+F 2 "Diode_SMD:D_SOD-123" V 10100 2150 50  0001 C CNN
+F 3 "~" V 10100 2150 50  0001 C CNN
+	1    10100 2150
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:+BATT #PWR0123
+U 1 1 61BCC81C
+P 10000 2150
+F 0 "#PWR0123" H 10000 2000 50  0001 C CNN
+F 1 "+BATT" V 10015 2277 50  0000 L CNN
+F 2 "" H 10000 2150 50  0001 C CNN
+F 3 "" H 10000 2150 50  0001 C CNN
+	1    10000 2150
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	10200 2150 10300 2150
+Wire Wire Line
+	10200 2050 10300 2050
+Wire Wire Line
+	10300 2050 10300 2150
+Connection ~ 10300 2150
+$Comp
+L power:+3V3 #PWR0124
+U 1 1 61BDE9C3
+P 5700 6100
+F 0 "#PWR0124" H 5700 5950 50  0001 C CNN
+F 1 "+3V3" H 5715 6273 50  0000 C CNN
+F 2 "" H 5700 6100 50  0001 C CNN
+F 3 "" H 5700 6100 50  0001 C CNN
+	1    5700 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0126
+U 1 1 61C0782E
+P 5200 6900
+F 0 "#PWR0126" H 5200 6750 50  0001 C CNN
+F 1 "+3V3" H 5215 7073 50  0000 C CNN
+F 2 "" H 5200 6900 50  0001 C CNN
+F 3 "" H 5200 6900 50  0001 C CNN
+	1    5200 6900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0127
+U 1 1 61C3E267
+P 8550 4000
+F 0 "#PWR0127" H 8550 3850 50  0001 C CNN
+F 1 "+3V3" V 8565 4128 50  0000 L CNN
+F 2 "" H 8550 4000 50  0001 C CNN
+F 3 "" H 8550 4000 50  0001 C CNN
+	1    8550 4000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:Earth #PWR0128
+U 1 1 61C3E9CD
+P 8550 3900
+F 0 "#PWR0128" H 8550 3650 50  0001 C CNN
+F 1 "Earth" H 8550 3750 50  0001 C CNN
+F 2 "" H 8550 3900 50  0001 C CNN
+F 3 "~" H 8550 3900 50  0001 C CNN
+	1    8550 3900
+	0    1    1    0   
+$EndComp
+$Comp
+L power:Earth #PWR0129
+U 1 1 61C41006
+P 10550 3800
+F 0 "#PWR0129" H 10550 3550 50  0001 C CNN
+F 1 "Earth" H 10550 3650 50  0001 C CNN
+F 2 "" H 10550 3800 50  0001 C CNN
+F 3 "~" H 10550 3800 50  0001 C CNN
+	1    10550 3800
+	0    -1   -1   0   
+$EndComp
+Text Label 10550 5200 0    50   ~ 0
+IO0
+Text Label 10550 4000 0    50   ~ 0
+IO1
+Text Label 10550 4100 0    50   ~ 0
+IO2
+Text Label 9000 5650 3    50   ~ 0
+IO3
+Text Label 8550 4200 2    50   ~ 0
+IO4
+Text Label 8550 4300 2    50   ~ 0
+IO5
+Text Label 8550 4400 2    50   ~ 0
+IO6
+Text Label 8550 4500 2    50   ~ 0
+IO7
+Text Label 8550 5000 2    50   ~ 0
+IO8
+Text Label 9200 5650 3    50   ~ 0
+IO9
+Text Label 9300 5650 3    50   ~ 0
+IO10
+Text Label 9400 5650 3    50   ~ 0
+IO11
+Text Label 9500 5650 3    50   ~ 0
+IO12
+Text Label 9600 5650 3    50   ~ 0
+IO13
+Text Label 9700 5650 3    50   ~ 0
+IO14
+Text Label 8550 4800 2    50   ~ 0
+IO17
+Text Label 8550 4900 2    50   ~ 0
+IO18
+Text Label 8550 5100 2    50   ~ 0
+IO19
+Text Label 8550 5200 2    50   ~ 0
+IO20
+Text Label 9800 5650 3    50   ~ 0
+IO21
+Text Label 10550 5100 0    50   ~ 0
+IO35
+Text Label 10550 5000 0    50   ~ 0
+IO36
+Text Label 10550 4900 0    50   ~ 0
+IO37
+Text Label 10550 4800 0    50   ~ 0
+IO38
+Text Label 10550 4700 0    50   ~ 0
+IO39
+Text Label 10550 4600 0    50   ~ 0
+IO40
+Text Label 10550 4500 0    50   ~ 0
+IO41
+Text Label 10550 4400 0    50   ~ 0
+IO42
+Text Label 10550 4200 0    50   ~ 0
+IO43
+Text Label 10550 4300 0    50   ~ 0
+IO44
+Text Label 10100 5650 3    50   ~ 0
+IO45
+Text Label 9100 5650 3    50   ~ 0
+IO46
+Text Label 10000 5650 3    50   ~ 0
+IO48
+Text Label 9900 5650 3    50   ~ 0
+IO47
+$Comp
+L Device:R_Small R8
+U 1 1 61CCECBD
+P 8200 4000
+F 0 "R8" H 8300 3900 50  0000 C CNN
+F 1 "10k" H 8300 4000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 8200 4000 50  0001 C CNN
+F 3 "~" H 8200 4000 50  0001 C CNN
+	1    8200 4000
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C_Small C1
+U 1 1 61CD4A5F
+P 8200 4200
+F 0 "C1" H 8100 4150 50  0000 R CNN
+F 1 "1u" H 8109 4245 50  0000 R CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8200 4200 50  0001 C CNN
+F 3 "~" H 8200 4200 50  0001 C CNN
+	1    8200 4200
+	1    0    0    1   
+$EndComp
+$Comp
+L power:Earth #PWR0130
+U 1 1 61CDC3C2
+P 8200 4300
+F 0 "#PWR0130" H 8200 4050 50  0001 C CNN
+F 1 "Earth" H 8200 4150 50  0001 C CNN
+F 2 "" H 8200 4300 50  0001 C CNN
+F 3 "~" H 8200 4300 50  0001 C CNN
+	1    8200 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0131
+U 1 1 61CDCA69
+P 8200 3900
+F 0 "#PWR0131" H 8200 3750 50  0001 C CNN
+F 1 "+3V3" H 8215 4073 50  0000 C CNN
+F 2 "" H 8200 3900 50  0001 C CNN
+F 3 "" H 8200 3900 50  0001 C CNN
+	1    8200 3900
+	1    0    0    -1  
+$EndComp
+Text Label 7250 3350 2    50   ~ 0
+IO4
+Text Label 7250 3450 2    50   ~ 0
+IO5
+Text Label 7250 3550 2    50   ~ 0
+IO6
+Text Label 7250 3650 2    50   ~ 0
+IO7
+Text Label 7250 3750 2    50   ~ 0
+IO8
+Text Label 7250 4500 2    50   ~ 0
+IO17
+Text Label 7250 4600 2    50   ~ 0
+IO18
+Text Label 7250 4700 2    50   ~ 0
+IO19
+Text Label 7250 4800 2    50   ~ 0
+IO20
+Text Label 7250 3250 2    50   ~ 0
+IO3
+Text Label 7250 3850 2    50   ~ 0
+IO9
+Text Label 7250 3950 2    50   ~ 0
+IO10
+Text Label 7250 4050 2    50   ~ 0
+IO11
+Text Label 7250 4150 2    50   ~ 0
+IO12
+Text Label 7250 4250 2    50   ~ 0
+IO13
+Text Label 7250 4350 2    50   ~ 0
+IO14
+Text Label 7250 4900 2    50   ~ 0
+IO21
+Text Label 7250 6000 2    50   ~ 0
+IO45
+Text Label 7250 6100 2    50   ~ 0
+IO46
+Text Label 7250 6300 2    50   ~ 0
+IO48
+Text Label 7250 6200 2    50   ~ 0
+IO47
+Text Label 7250 2950 2    50   ~ 0
+IO0
+Text Label 7250 3050 2    50   ~ 0
+IO1
+Text Label 7250 3150 2    50   ~ 0
+IO2
+Text Label 7250 5000 2    50   ~ 0
+IO35
+Text Label 7250 5100 2    50   ~ 0
+IO36
+Text Label 7250 5200 2    50   ~ 0
+IO37
+Text Label 7250 5300 2    50   ~ 0
+IO38
+Text Label 7250 5400 2    50   ~ 0
+IO39
+Text Label 7250 5500 2    50   ~ 0
+IO40
+Text Label 7250 5600 2    50   ~ 0
+IO41
+Text Label 7250 5700 2    50   ~ 0
+IO42
+Text Label 7250 5800 2    50   ~ 0
+IO43
+Text Label 7250 5900 2    50   ~ 0
+IO44
+Text Label 7500 3350 0    50   ~ 0
+COL_SEL0
+Text Label 7500 3450 0    50   ~ 0
+COL_SEL1
+Text Label 7500 3550 0    50   ~ 0
+COL_SEL2
+$Comp
+L Connector:Conn_01x04_Male J2
+U 1 1 61E14265
+P 11150 4300
+F 0 "J2" H 11300 4500 50  0000 R CNN
+F 1 "Debug" H 11350 4600 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 11150 4300 50  0001 C CNN
+F 3 "~" H 11150 4300 50  0001 C CNN
+	1    11150 4300
+	-1   0    0    1   
+$EndComp
+Text Label 10800 4200 0    50   ~ 0
+TX0
+Text Label 10800 4300 0    50   ~ 0
+RX0
+$Comp
+L power:Earth #PWR0132
+U 1 1 61E1FDC4
+P 10950 4400
+F 0 "#PWR0132" H 10950 4150 50  0001 C CNN
+F 1 "Earth" H 10950 4250 50  0001 C CNN
+F 2 "" H 10950 4400 50  0001 C CNN
+F 3 "~" H 10950 4400 50  0001 C CNN
+	1    10950 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0133
+U 1 1 61E202AF
+P 10950 4100
+F 0 "#PWR0133" H 10950 3950 50  0001 C CNN
+F 1 "+3V3" H 10965 4273 50  0000 C CNN
+F 2 "" H 10950 4100 50  0001 C CNN
+F 3 "" H 10950 4100 50  0001 C CNN
+	1    10950 4100
+	1    0    0    -1  
+$EndComp
+Text Label 7500 4700 0    50   ~ 0
+USB_D-
+Text Label 7500 4800 0    50   ~ 0
+USB_D+
+Text Label 7650 1500 0    50   ~ 0
+USB_D-
+Text Label 7650 1700 0    50   ~ 0
+USB_D+
+NoConn ~ 7650 1200
+NoConn ~ 7650 1300
+Text Label 4600 2050 2    50   ~ 0
+ROW16
+Text Label 4600 1950 2    50   ~ 0
+ROW17
+Text Label 7500 5000 0    50   ~ 0
+ROW0
+Text Label 7500 5600 0    50   ~ 0
+ROW1
+Text Label 7500 6300 0    50   ~ 0
+ROW2
+Text Label 7500 6200 0    50   ~ 0
+ROW3
+Text Label 7500 4900 0    50   ~ 0
+ROW4
+Text Label 7500 4350 0    50   ~ 0
+ROW5
+Text Label 7500 4250 0    50   ~ 0
+ROW6
+Text Label 7500 4150 0    50   ~ 0
+ROW7
+Text Label 7500 4050 0    50   ~ 0
+ROW8
+Text Label 7500 3950 0    50   ~ 0
+ROW9
+Text Label 7500 3850 0    50   ~ 0
+ROW10
+Text Label 7500 5700 0    50   ~ 0
+ROW11
+Text Label 7500 3250 0    50   ~ 0
+ROW12
+Text Label 7500 3750 0    50   ~ 0
+ROW13
+Text Label 7500 4600 0    50   ~ 0
+ROW14
+Text Label 7500 4500 0    50   ~ 0
+ROW15
+Text Label 7500 6100 0    50   ~ 0
+ROW17
+Text Label 4600 2350 2    50   ~ 0
+BTN_LEFT
+Text Label 4600 2250 2    50   ~ 0
+BTN_MIDDLE
+Text Label 4600 2150 2    50   ~ 0
+BTN_RIGHT
+Text Label 7500 2950 0    50   ~ 0
+BTN_MIDDLE
+Text Label 7500 5100 0    50   ~ 0
+BTN_FN
+Text Label 7500 5200 0    50   ~ 0
+TP_RST
+Text Label 7500 5300 0    50   ~ 0
+TP_DATA
+Text Label 7500 5400 0    50   ~ 0
+TP_CLK
+Text Label 7800 5500 0    50   ~ 0
+BL_PWM
+Text Label 1100 6150 2    50   ~ 0
+TP_RST
+Text Label 1100 6050 2    50   ~ 0
+TP_DATA
+Text Label 1100 6650 2    50   ~ 0
+TP_CLK
+Text Label 1100 6850 2    50   ~ 0
+BL_PWM
+Text Label 2900 6250 2    50   ~ 0
+TP_RST
+Text Label 2900 6150 2    50   ~ 0
+TP_DATA
+Text Label 2900 6650 2    50   ~ 0
+TP_CLK
+$Comp
+L power:Earth #PWR0134
+U 1 1 61E99F97
+P 4350 2450
+F 0 "#PWR0134" H 4350 2200 50  0001 C CNN
+F 1 "Earth" H 4350 2300 50  0001 C CNN
+F 2 "" H 4350 2450 50  0001 C CNN
+F 3 "~" H 4350 2450 50  0001 C CNN
+	1    4350 2450
+	0    1    1    0   
+$EndComp
+Text Label 4600 2550 2    50   ~ 0
+ROW15
+Text Label 4600 2650 2    50   ~ 0
+ROW14
+Text Label 4600 2750 2    50   ~ 0
+ROW13
+Text Label 4600 2850 2    50   ~ 0
+ROW12
+Text Label 4600 2950 2    50   ~ 0
+ROW11
+Text Label 4600 3050 2    50   ~ 0
+ROW10
+Text Label 4600 3150 2    50   ~ 0
+ROW9
+Text Label 4600 3250 2    50   ~ 0
+ROW8
+Text Label 4600 3350 2    50   ~ 0
+ROW7
+Text Label 4600 3450 2    50   ~ 0
+ROW6
+Text Label 4600 3550 2    50   ~ 0
+ROW5
+Text Label 4600 3650 2    50   ~ 0
+ROW4
+Text Label 4600 3850 2    50   ~ 0
+ROW3
+Text Label 4600 3950 2    50   ~ 0
+ROW2
+Text Label 4600 4250 2    50   ~ 0
+ROW1
+Text Label 4600 4550 2    50   ~ 0
+ROW0
+Text Label 4600 4850 2    50   ~ 0
+COL0
+Text Label 4600 3750 2    50   ~ 0
+COL7
+Text Label 4600 4050 2    50   ~ 0
+COL6
+Text Label 4600 4150 2    50   ~ 0
+COL5
+Text Label 4600 4350 2    50   ~ 0
+COL4
+Text Label 4600 4450 2    50   ~ 0
+COL3
+Text Label 4600 4650 2    50   ~ 0
+COL2
+Text Label 4600 4750 2    50   ~ 0
+COL1
+Wire Wire Line
+	4350 2450 4600 2450
+$Comp
+L power:+3V3 #PWR0135
+U 1 1 61ED0BD5
+P 900 2450
+F 0 "#PWR0135" H 900 2300 50  0001 C CNN
+F 1 "+3V3" V 1000 2500 50  0000 L CNN
+F 2 "" H 900 2450 50  0001 C CNN
+F 3 "" H 900 2450 50  0001 C CNN
+	1    900  2450
+	0    -1   -1   0   
+$EndComp
+Text Label 1200 2050 2    50   ~ 0
+BTN_FN
+Text Label 1200 2250 2    50   ~ 0
+LED_F1
+Text Label 1200 2350 2    50   ~ 0
+LED_FN
+Text Label 1200 1150 2    50   ~ 0
+LED_NUM
+Text Label 1200 1850 2    50   ~ 0
+LED_CAP
+$Comp
+L power:Earth #PWR0136
+U 1 1 61EB1E54
+P 900 1950
+F 0 "#PWR0136" H 900 1700 50  0001 C CNN
+F 1 "Earth" H 900 1800 50  0001 C CNN
+F 2 "" H 900 1950 50  0001 C CNN
+F 3 "~" H 900 1950 50  0001 C CNN
+	1    900  1950
+	0    1    1    0   
+$EndComp
+$Comp
+L power:Earth #PWR0137
+U 1 1 61EA88E8
+P 900 1750
+F 0 "#PWR0137" H 900 1500 50  0001 C CNN
+F 1 "Earth" H 900 1600 50  0001 C CNN
+F 2 "" H 900 1750 50  0001 C CNN
+F 3 "~" H 900 1750 50  0001 C CNN
+	1    900  1750
+	0    1    1    0   
+$EndComp
+Text Label 1200 1550 2    50   ~ 0
+BTN_RIGHT
+Text Label 1200 1450 2    50   ~ 0
+BTN_MIDDLE
+Text Label 1200 1650 2    50   ~ 0
+BTN_LEFT
+Text Label 1200 1250 2    50   ~ 0
+ROW17
+Text Label 1200 1350 2    50   ~ 0
+ROW16
+Text Label 1200 2550 2    50   ~ 0
+ROW15
+Text Label 1200 2650 2    50   ~ 0
+ROW14
+Text Label 1200 2750 2    50   ~ 0
+ROW13
+Text Label 1200 2850 2    50   ~ 0
+ROW12
+Text Label 1200 2950 2    50   ~ 0
+ROW11
+Text Label 1200 3050 2    50   ~ 0
+ROW10
+Text Label 1200 3150 2    50   ~ 0
+ROW9
+Text Label 1200 3250 2    50   ~ 0
+ROW8
+Text Label 1200 3350 2    50   ~ 0
+ROW7
+Text Label 1200 3450 2    50   ~ 0
+ROW6
+Text Label 1200 3550 2    50   ~ 0
+ROW5
+Text Label 1200 3650 2    50   ~ 0
+ROW4
+Text Label 1200 3850 2    50   ~ 0
+ROW3
+Text Label 1200 3950 2    50   ~ 0
+ROW2
+Text Label 1200 4250 2    50   ~ 0
+ROW1
+Text Label 1200 4550 2    50   ~ 0
+ROW0
+Text Label 1200 4850 2    50   ~ 0
+COL0
+Text Label 1200 3750 2    50   ~ 0
+COL7
+Text Label 1200 4050 2    50   ~ 0
+COL6
+Text Label 1200 4150 2    50   ~ 0
+COL5
+Text Label 1200 4350 2    50   ~ 0
+COL4
+Text Label 1200 4450 2    50   ~ 0
+COL3
+Text Label 1200 4650 2    50   ~ 0
+COL2
+Text Label 1200 4750 2    50   ~ 0
+COL1
+Wire Wire Line
+	900  1750 1200 1750
+Wire Wire Line
+	900  1950 1200 1950
+Wire Wire Line
+	900  2450 1200 2450
+NoConn ~ 1100 6950
+Text Label 2900 6550 2    50   ~ 0
+BTN_LEFT
+Text Label 2900 6350 2    50   ~ 0
+BTN_MIDDLE
+Text Label 2900 6450 2    50   ~ 0
+BTN_RIGHT
+Text Label 1100 6450 2    50   ~ 0
+BTN_LEFT
+Text Label 1100 6250 2    50   ~ 0
+BTN_MIDDLE
+Text Label 1100 6350 2    50   ~ 0
+BTN_RIGHT
+NoConn ~ 10700 1100
+$Comp
+L power:+3V3 #PWR0138
+U 1 1 6206F9FB
+P 2900 6850
+F 0 "#PWR0138" H 2900 6700 50  0001 C CNN
+F 1 "+3V3" V 2915 6978 50  0000 L CNN
+F 2 "" H 2900 6850 50  0001 C CNN
+F 3 "" H 2900 6850 50  0001 C CNN
+	1    2900 6850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR0139
+U 1 1 6207034F
+P 1100 5950
+F 0 "#PWR0139" H 1100 5800 50  0001 C CNN
+F 1 "+3V3" V 1115 6078 50  0000 L CNN
+F 2 "" H 1100 5950 50  0001 C CNN
+F 3 "" H 1100 5950 50  0001 C CNN
+	1    1100 5950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3V3 #PWR0140
+U 1 1 62070FF3
+P 1100 6750
+F 0 "#PWR0140" H 1100 6600 50  0001 C CNN
+F 1 "+3V3" V 1115 6878 50  0000 L CNN
+F 2 "" H 1100 6750 50  0001 C CNN
+F 3 "" H 1100 6750 50  0001 C CNN
+	1    1100 6750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:Earth #PWR0141
+U 1 1 620718D7
+P 1100 7050
+F 0 "#PWR0141" H 1100 6800 50  0001 C CNN
+F 1 "Earth" H 1100 6900 50  0001 C CNN
+F 2 "" H 1100 7050 50  0001 C CNN
+F 3 "~" H 1100 7050 50  0001 C CNN
+	1    1100 7050
+	0    1    1    0   
+$EndComp
+$Comp
+L power:Earth #PWR0142
+U 1 1 6207244F
+P 850 6550
+F 0 "#PWR0142" H 850 6300 50  0001 C CNN
+F 1 "Earth" H 850 6400 50  0001 C CNN
+F 2 "" H 850 6550 50  0001 C CNN
+F 3 "~" H 850 6550 50  0001 C CNN
+	1    850  6550
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	850  6550 1100 6550
+Wire Wire Line
+	850  6650 1100 6650
+$Comp
+L power:Earth #PWR0143
+U 1 1 62076110
+P 2900 6750
+F 0 "#PWR0143" H 2900 6500 50  0001 C CNN
+F 1 "Earth" H 2900 6600 50  0001 C CNN
+F 2 "" H 2900 6750 50  0001 C CNN
+F 3 "~" H 2900 6750 50  0001 C CNN
+	1    2900 6750
+	0    1    1    0   
+$EndComp
+$Comp
+L power:Earth #PWR0144
+U 1 1 620A1237
+P 10550 3900
+F 0 "#PWR0144" H 10550 3650 50  0001 C CNN
+F 1 "Earth" H 10550 3750 50  0001 C CNN
+F 2 "" H 10550 3900 50  0001 C CNN
+F 3 "~" H 10550 3900 50  0001 C CNN
+	1    10550 3900
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	10550 4200 10950 4200
+Wire Wire Line
+	10550 4300 10950 4300
+$Comp
+L Connector:Conn_01x04_Male J1
+U 1 1 620F22D2
+P 8000 2300
+F 0 "J1" H 7973 2182 50  0000 R CNN
+F 1 "USB_EXT" H 8000 2350 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 8000 2300 50  0001 C CNN
+F 3 "~" H 8000 2300 50  0001 C CNN
+	1    8000 2300
+	1    0    0    1   
+$EndComp
+$Comp
+L power:Earth #PWR0145
+U 1 1 6210C76A
+P 8200 2400
+F 0 "#PWR0145" H 8200 2150 50  0001 C CNN
+F 1 "Earth" H 8200 2250 50  0001 C CNN
+F 2 "" H 8200 2400 50  0001 C CNN
+F 3 "~" H 8200 2400 50  0001 C CNN
+	1    8200 2400
+	1    0    0    -1  
+$EndComp
+Text Label 8200 2300 0    50   ~ 0
+USB_D+
+Text Label 8200 2200 0    50   ~ 0
+USB_D-
+$Comp
+L power:+5V #PWR0146
+U 1 1 6210F062
+P 8200 2100
+F 0 "#PWR0146" H 8200 1950 50  0001 C CNN
+F 1 "+5V" H 8215 2273 50  0000 C CNN
+F 2 "" H 8200 2100 50  0001 C CNN
+F 3 "" H 8200 2100 50  0001 C CNN
+	1    8200 2100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8550 4100 8200 4100
+Connection ~ 8200 4100
+$Comp
+L Device:R_Small R2
+U 1 1 62244164
+P 7600 6000
+F 0 "R2" V 7600 6000 50  0000 C CNN
+F 1 "1.2k" V 7600 6000 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7600 6000 50  0001 C CNN
+F 3 "~" H 7600 6000 50  0001 C CNN
+	1    7600 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R5
+U 1 1 6224BB27
+P 7600 5900
+F 0 "R5" V 7600 5900 50  0000 C CNN
+F 1 "1.2k" V 7600 5900 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7600 5900 50  0001 C CNN
+F 3 "~" H 7600 5900 50  0001 C CNN
+	1    7600 5900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7250 6100 7500 6100
+Wire Wire Line
+	7250 6200 7500 6200
+Wire Wire Line
+	7250 6300 7500 6300
+Wire Wire Line
+	7250 6000 7500 6000
+Wire Wire Line
+	7700 6000 7800 6000
+Wire Wire Line
+	7700 5900 7800 5900
+Wire Wire Line
+	7250 5000 7500 5000
+Wire Wire Line
+	7250 5100 7500 5100
+Wire Wire Line
+	7250 5300 7500 5300
+Wire Wire Line
+	7250 5400 7500 5400
+Wire Wire Line
+	7250 2950 7500 2950
+Wire Wire Line
+	7250 3050 7500 3050
+Wire Wire Line
+	7250 3150 7500 3150
+Wire Wire Line
+	7250 3250 7500 3250
+Wire Wire Line
+	7250 3350 7500 3350
+Wire Wire Line
+	7250 3450 7500 3450
+Wire Wire Line
+	7250 3550 7500 3550
+Wire Wire Line
+	7250 3650 7500 3650
+Wire Wire Line
+	7250 3750 7500 3750
+Wire Wire Line
+	7250 3850 7500 3850
+Wire Wire Line
+	7250 3950 7500 3950
+Wire Wire Line
+	7250 4050 7500 4050
+Wire Wire Line
+	7250 4150 7500 4150
+Wire Wire Line
+	7250 4250 7500 4250
+Wire Wire Line
+	7250 4350 7500 4350
+Wire Wire Line
+	7250 4500 7500 4500
+Wire Wire Line
+	7250 4600 7500 4600
+Wire Wire Line
+	7250 4700 7500 4700
+Wire Wire Line
+	7250 4800 7500 4800
+Wire Wire Line
+	7250 4900 7500 4900
+$Comp
+L Device:R_Small R6
+U 1 1 6229B57D
+P 7900 5200
+F 0 "R6" V 7900 5200 50  0000 C CNN
+F 1 "1.2k" V 7900 5200 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7900 5200 50  0001 C CNN
+F 3 "~" H 7900 5200 50  0001 C CNN
+	1    7900 5200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7250 5200 7800 5200
+$Comp
+L power:+3V3 #PWR0147
+U 1 1 6229EDF8
+P 8000 5200
+F 0 "#PWR0147" H 8000 5050 50  0001 C CNN
+F 1 "+3V3" V 7900 5150 50  0000 L CNN
+F 2 "" H 8000 5200 50  0001 C CNN
+F 3 "" H 8000 5200 50  0001 C CNN
+	1    8000 5200
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R7
+U 1 1 622B3F5B
+P 7600 5500
+F 0 "R7" V 7600 5500 50  0000 C CNN
+F 1 "100" V 7650 5500 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7600 5500 50  0001 C CNN
+F 3 "~" H 7600 5500 50  0001 C CNN
+	1    7600 5500
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7250 5500 7500 5500
+$Comp
+L power:Earth #PWR0148
+U 1 1 622B7691
+P 8150 3200
+F 0 "#PWR0148" H 8150 2950 50  0001 C CNN
+F 1 "Earth" H 8150 3050 50  0001 C CNN
+F 2 "" H 8150 3200 50  0001 C CNN
+F 3 "~" H 8150 3200 50  0001 C CNN
+	1    8150 3200
+	0    -1   -1   0   
+$EndComp
+Text Label 7300 5800 0    50   ~ 0
+TX0
+Text Label 7300 5900 0    50   ~ 0
+RX0
+Wire Wire Line
+	7250 5600 7500 5600
+Wire Wire Line
+	7250 5700 7500 5700
+Wire Wire Line
+	7250 5800 7500 5800
+Wire Wire Line
+	7250 5900 7500 5900
+Text Label 7800 5900 0    50   ~ 0
+LED_NUM
+Text Label 7800 6000 0    50   ~ 0
+LED_CAP
+Text Label 7800 5800 0    50   ~ 0
+LED_FN
+$Comp
+L mylib:TP4056 U7
+U 1 1 61A0E8E7
+P 8950 1200
+F 0 "U7" H 8950 1665 50  0000 C CNN
+F 1 "TP4056" H 8950 1574 50  0000 C CNN
+F 2 "Package_SO:SOP-8_3.9x4.9mm_P1.27mm" H 8950 1200 50  0001 C CNN
+F 3 "" H 8950 1200 50  0001 C CNN
+	1    8950 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L mylib:Keyboard-36p U9
+U 1 1 6253D105
+P 2850 4100
+F 0 "U9" H 2325 1085 50  0000 C CNN
+F 1 "Keyboard-36p" H 2325 1176 50  0000 C CNN
+F 2 "mylib:Keyboard-36" H 2950 4100 50  0001 C CNN
+F 3 "" H 2950 4100 50  0001 C CNN
+	1    2850 4100
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:+3V3 #PWR03
+U 1 1 625B6877
+P 2600 2450
+F 0 "#PWR03" H 2600 2300 50  0001 C CNN
+F 1 "+3V3" V 2700 2500 50  0000 L CNN
+F 2 "" H 2600 2450 50  0001 C CNN
+F 3 "" H 2600 2450 50  0001 C CNN
+	1    2600 2450
+	0    -1   -1   0   
+$EndComp
+Text Label 2900 2050 2    50   ~ 0
+BTN_FN
+Text Label 2900 2250 2    50   ~ 0
+LED_F1
+Text Label 2900 2350 2    50   ~ 0
+LED_FN
+Text Label 2900 1850 2    50   ~ 0
+LED_CAP
+$Comp
+L power:Earth #PWR02
+U 1 1 625B6881
+P 2600 1950
+F 0 "#PWR02" H 2600 1700 50  0001 C CNN
+F 1 "Earth" H 2600 1800 50  0001 C CNN
+F 2 "" H 2600 1950 50  0001 C CNN
+F 3 "~" H 2600 1950 50  0001 C CNN
+	1    2600 1950
+	0    1    1    0   
+$EndComp
+$Comp
+L power:Earth #PWR01
+U 1 1 625B6887
+P 2600 1750
+F 0 "#PWR01" H 2600 1500 50  0001 C CNN
+F 1 "Earth" H 2600 1600 50  0001 C CNN
+F 2 "" H 2600 1750 50  0001 C CNN
+F 3 "~" H 2600 1750 50  0001 C CNN
+	1    2600 1750
+	0    1    1    0   
+$EndComp
+Text Label 2900 1550 2    50   ~ 0
+BTN_RIGHT
+Text Label 2900 1450 2    50   ~ 0
+BTN_MIDDLE
+Text Label 2900 1650 2    50   ~ 0
+BTN_LEFT
+Text Label 2900 2550 2    50   ~ 0
+ROW15
+Text Label 2900 2650 2    50   ~ 0
+ROW14
+Text Label 2900 2750 2    50   ~ 0
+ROW13
+Text Label 2900 2850 2    50   ~ 0
+ROW12
+Text Label 2900 2950 2    50   ~ 0
+ROW11
+Text Label 2900 3050 2    50   ~ 0
+ROW10
+Text Label 2900 3150 2    50   ~ 0
+ROW9
+Text Label 2900 3250 2    50   ~ 0
+ROW8
+Text Label 2900 3350 2    50   ~ 0
+ROW7
+Text Label 2900 3450 2    50   ~ 0
+ROW6
+Text Label 2900 3550 2    50   ~ 0
+ROW5
+Text Label 2900 3650 2    50   ~ 0
+ROW4
+Text Label 2900 3850 2    50   ~ 0
+ROW3
+Text Label 2900 3950 2    50   ~ 0
+ROW2
+Text Label 2900 4250 2    50   ~ 0
+ROW1
+Text Label 2900 4550 2    50   ~ 0
+ROW0
+Text Label 2900 4850 2    50   ~ 0
+COL0
+Text Label 2900 3750 2    50   ~ 0
+COL7
+Text Label 2900 4050 2    50   ~ 0
+COL6
+Text Label 2900 4150 2    50   ~ 0
+COL5
+Text Label 2900 4350 2    50   ~ 0
+COL4
+Text Label 2900 4450 2    50   ~ 0
+COL3
+Text Label 2900 4650 2    50   ~ 0
+COL2
+Text Label 2900 4750 2    50   ~ 0
+COL1
+Wire Wire Line
+	2600 1750 2900 1750
+Wire Wire Line
+	2600 1950 2900 1950
+Wire Wire Line
+	2600 2450 2900 2450
+NoConn ~ 2900 1350
+Text Notes 1300 5150 0    50   ~ 0
+Thinkpad E580
+Text Notes 3000 5150 0    50   ~ 0
+Thinkpad T470
+Text Notes 4600 5100 0    50   ~ 0
+Thinkpad E430/E530
+Text Notes 1250 7350 0    50   ~ 0
+Thinkpad E580/T470
+Text Notes 2950 7300 0    50   ~ 0
+Thinkpad E430/E530
+Text Notes 2750 900  0    200  Italic 40
+Keyboard Connector
+Text Notes 8650 3450 0    200  Italic 40
+ESP32-S3-\nWROOM-1
+Text Notes 2150 5650 0    200  Italic 40
+Trackpoint
+Text Notes 4350 5650 0    200  Italic 40
+Column Select
+Wire Notes Line
+	6950 6550 6950 2750
+Wire Notes Line
+	6950 2750 11200 2750
+Wire Notes Line
+	11200 2750 11200 6550
+Wire Notes Line
+	11200 6550 6950 6550
+Wire Notes Line
+	500  5300 4150 5300
+Wire Notes Line
+	4150 5300 4150 7800
+Wire Notes Line
+	4150 7800 500  7800
+Wire Notes Line
+	500  7800 500  5300
+Wire Notes Line
+	4200 5300 6900 5300
+Wire Notes Line
+	6900 5300 6900 7800
+Wire Notes Line
+	6900 7800 4200 7800
+Wire Notes Line
+	4200 7800 4200 5300
+Wire Notes Line
+	500  5250 6100 5250
+Wire Notes Line
+	6100 5250 6100 500 
+Wire Notes Line
+	6100 500  500  500 
+Wire Notes Line
+	500  500  500  5250
+Text Notes 7750 7500 0    79   Italic 16
+ESP32-S3 USB/BLE Keyboard Driver
+Wire Wire Line
+	5200 7000 5200 7100
+Connection ~ 5200 7100
+$Comp
+L Device:Crystal_Small Y1
+U 1 1 62CD5FCC
+P 8300 4650
+F 0 "Y1" V 8300 4800 50  0000 C CNN
+F 1 "32k" V 8300 4650 50  0000 C CNN
+F 2 "Crystal:Crystal_SMD_MicroCrystal_CC7V-T1A-2Pin_3.2x1.5mm" H 8300 4650 50  0001 C CNN
+F 3 "~" H 8300 4650 50  0001 C CNN
+	1    8300 4650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8300 4550 8400 4550
+Wire Wire Line
+	8400 4550 8400 4600
+Wire Wire Line
+	8400 4600 8550 4600
+Wire Wire Line
+	8300 4750 8400 4750
+Wire Wire Line
+	8400 4750 8400 4700
+Wire Wire Line
+	8400 4700 8550 4700
+$Comp
+L Device:C_Small C6
+U 1 1 62D507DB
+P 8200 4550
+F 0 "C6" V 8150 4500 50  0000 R CNN
+F 1 "12.5p" V 8150 4800 50  0000 R CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8200 4550 50  0001 C CNN
+F 3 "~" H 8200 4550 50  0001 C CNN
+	1    8200 4550
+	0    -1   1    0   
+$EndComp
+Connection ~ 8300 4550
+$Comp
+L Device:C_Small C7
+U 1 1 62D52728
+P 8200 4750
+F 0 "C7" V 8300 4750 50  0000 R CNN
+F 1 "12.5p" V 8250 5000 50  0000 R CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8200 4750 50  0001 C CNN
+F 3 "~" H 8200 4750 50  0001 C CNN
+	1    8200 4750
+	0    -1   1    0   
+$EndComp
+Connection ~ 8300 4750
+$Comp
+L power:Earth #PWR04
+U 1 1 62D54920
+P 8100 4650
+F 0 "#PWR04" H 8100 4400 50  0001 C CNN
+F 1 "Earth" H 8100 4500 50  0001 C CNN
+F 2 "" H 8100 4650 50  0001 C CNN
+F 3 "~" H 8100 4650 50  0001 C CNN
+	1    8100 4650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8100 4550 8100 4650
+Connection ~ 8100 4650
+Wire Wire Line
+	8100 4650 8100 4750
+Wire Wire Line
+	7700 5800 7800 5800
+$Comp
+L Device:R_Small R4
+U 1 1 6224B719
+P 7600 5800
+F 0 "R4" V 7600 5800 50  0000 C CNN
+F 1 "1.2k" V 7600 5800 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7600 5800 50  0001 C CNN
+F 3 "~" H 7600 5800 50  0001 C CNN
+	1    7600 5800
+	0    1    1    0   
+$EndComp
+Text Label 7500 3650 0    50   ~ 0
+ROW16
+Wire Wire Line
+	7950 3100 7900 3100
+Wire Wire Line
+	7900 3200 7950 3200
+$Comp
+L Device:R_Small R13
+U 1 1 62E016F6
+P 8050 3200
+F 0 "R13" V 8050 3200 50  0000 C CNN
+F 1 "15k" V 8100 3300 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 8050 3200 50  0001 C CNN
+F 3 "~" H 8050 3200 50  0001 C CNN
+	1    8050 3200
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R12
+U 1 1 62E0227E
+P 8050 3100
+F 0 "R12" V 8050 3100 50  0000 C CNN
+F 1 "10k" V 8000 3200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 8050 3100 50  0001 C CNN
+F 3 "~" H 8050 3100 50  0001 C CNN
+	1    8050 3100
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+5V #PWR05
+U 1 1 62E0FD49
+P 8150 3100
+F 0 "#PWR05" H 8150 2950 50  0001 C CNN
+F 1 "+5V" V 8165 3228 50  0000 L CNN
+F 2 "" H 8150 3100 50  0001 C CNN
+F 3 "" H 8150 3100 50  0001 C CNN
+	1    8150 3100
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R1
+U 1 1 62E46C2A
+P 7600 3050
+F 0 "R1" V 7600 3050 50  0000 C CNN
+F 1 "1.2k" V 7600 3050 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7600 3050 50  0001 C CNN
+F 3 "~" H 7600 3050 50  0001 C CNN
+	1    7600 3050
+	0    1    1    0   
+$EndComp
+Text Label 7800 3050 0    50   ~ 0
+LED_F1
+Wire Wire Line
+	7700 3050 7800 3050
+Text Notes 10100 850  0    200  Italic 40
+Power
+Wire Wire Line
+	10300 1000 10300 1200
+$Comp
+L Device:R_Small R3
+U 1 1 62ED5414
+P 7600 3150
+F 0 "R3" V 7600 3150 50  0000 C CNN
+F 1 "1.2k" V 7600 3150 50  0001 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7600 3150 50  0001 C CNN
+F 3 "~" H 7600 3150 50  0001 C CNN
+	1    7600 3150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7700 5500 7800 5500
+Wire Wire Line
+	7900 3100 7900 3150
+Wire Wire Line
+	7700 3150 7900 3150
+Connection ~ 7900 3150
+Wire Wire Line
+	7900 3150 7900 3200
+NoConn ~ 2900 2150
+NoConn ~ 1200 2150
+$Comp
+L Device:C_Small C9
+U 1 1 61B54B20
+P 8050 3350
+F 0 "C9" H 7950 3300 50  0000 R CNN
+F 1 "1u" H 7959 3395 50  0000 R CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 8050 3350 50  0001 C CNN
+F 3 "~" H 8050 3350 50  0001 C CNN
+	1    8050 3350
+	0    1    -1   0   
+$EndComp
+Connection ~ 7900 3200
+Wire Wire Line
+	7900 3350 7950 3350
+Wire Wire Line
+	7900 3200 7900 3350
+$Comp
+L power:Earth #PWR06
+U 1 1 61B6B10B
+P 8150 3350
+F 0 "#PWR06" H 8150 3100 50  0001 C CNN
+F 1 "Earth" H 8150 3200 50  0001 C CNN
+F 2 "" H 8150 3350 50  0001 C CNN
+F 3 "~" H 8150 3350 50  0001 C CNN
+	1    8150 3350
+	0    -1   -1   0   
+$EndComp
+Text Label 7650 1800 0    50   ~ 0
+USB_D+
+Text Label 7650 1600 0    50   ~ 0
+USB_D-
+NoConn ~ 7650 2100
+NoConn ~ 7650 2200
+$EndSCHEMATC
